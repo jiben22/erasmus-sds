@@ -9,7 +9,6 @@ Describe the role and responsibilites of each member of the project
   - Develops and communicates Product Goal
   - Creates and communicates Product Backlog items
   - Orders Product Backlog items
-  - Ordred Product Backlog items
 
 - Luciana: Scrum Master
   - Coaches the team members
