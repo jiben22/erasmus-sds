@@ -23,4 +23,6 @@ Describe the role and responsibilites of each member of the project
 
 ## Communication strategy
 
+For the communication between the team members during the project, we will use Slack.
+
 ## Installation manual
