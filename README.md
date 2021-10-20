@@ -1,4 +1,4 @@
-# erasmus-sds
+# Erasmus+ SDS project
 
 ## Roles and responsibilities
 
@@ -20,6 +20,6 @@ Describe the role and responsibilites of each member of the project
   - Assure that the increment meets the Definition of Done
   - Adapt the plan
 
-## Communication strategies
+## Communication strategy
 
 ## Installation manual
