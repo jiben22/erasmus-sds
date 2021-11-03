@@ -77,10 +77,10 @@
       <div class="row">
           <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-3 d-flex justify-content-center">
-              <select class="form-select" aria-label="selectDiplomas">
+              <select class="form-select" aria-label="selectDiplomas" id="diploma-select">
                 <option selected>All diplomas</option>
-                <option value="1">B.Sc. program in Architecture</option>
-                <option value="2">Master program in Architecture</option>
+                <option value="B.Sc.">B.Sc. program in Architecture</option>
+                <option value="Master">Master program in Architecture</option>
               </select>
             </div>
           </div>
@@ -88,7 +88,7 @@
     </div>
     <div class="row align-items-center">
       <div class="col-lg-3">
-        <div class="card shadow-lg">
+        <div class="card shadow-lg" data-diploma="Master">
           <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
             <div class="d-block blur-shadow-image">
               <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg" alt="img-blur-shadow" class="img-fluid shadow rounded-3">
@@ -108,7 +108,7 @@
         </div>
       </div>
       <div class="col-lg-3">
-        <div class="card shadow-lg">
+        <div class="card shadow-lg" data-diploma="Master">
           <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
             <div class="d-block blur-shadow-image">
               <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg" alt="img-blur-shadow" class="img-fluid shadow rounded-3">
@@ -128,7 +128,7 @@
         </div>
       </div>
       <div class="col-lg-3">
-        <div class="card shadow-lg">
+        <div class="card shadow-lg" data-diploma="B.Sc.">
           <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
             <div class="d-block blur-shadow-image">
               <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg" alt="img-blur-shadow" class="img-fluid shadow rounded-3">
@@ -148,7 +148,7 @@
         </div>
       </div>
       <div class="col-lg-3">
-        <div class="card shadow-lg">
+        <div class="card shadow-lg" data-diploma="B.Sc.">
           <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
             <div class="d-block blur-shadow-image">
               <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg" alt="img-blur-shadow" class="img-fluid shadow rounded-3">
@@ -239,6 +239,39 @@
         console.error(countUp2.error);
       };
     }
+    
+    (function() {
+      const bsc = "B.Sc.";
+      const master = "Master";
+      const diplomaSelect = document.getElementById("diploma-select"); 
+      const hide = "none";
+      const show = "block";
+
+      diplomaSelect.addEventListener("change", function() {
+        const diploma = this.value;
+        const masterCourse = document.querySelectorAll("[data-diploma='Master']");
+        const bscCourses = document.querySelectorAll("[data-diploma='B.Sc.']");
+
+        if (diploma == bsc) {
+          changeVisilityCourseCards(bscCourses, show);
+          changeVisilityCourseCards(masterCourse, hide);
+        } else if (diploma == master) {
+          changeVisilityCourseCards(masterCourse, show);
+          changeVisilityCourseCards(bscCourses, hide);
+        } else {
+          changeVisilityCourseCards(bscCourses, show);
+          changeVisilityCourseCards(masterCourse, show);
+        }
+      });
+
+      function changeVisilityCourseCards(coursesToHide, visibility) {
+        if(coursesToHide.length > 0) {
+          for(var index = 0; index < coursesToHide.length; index++) {
+            coursesToHide[index].parentElement.style.display = visibility;
+          }
+        }
+      }
+    })();
   </script>
 </body>
 
