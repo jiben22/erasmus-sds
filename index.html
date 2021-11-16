@@ -121,7 +121,7 @@
           <div class="card card-profile overflow-hidden z-index-2">
             <div class="row">
               <div class="col-lg-4 col-md-6 col-12 pe-lg-0">
-                <a href="javascript:;" data-faculty-card-link>
+                <a href="courses.html" data-faculty-card-image-link>
                   <div class="p-3 pe-md-0">
                     <img class="w-100 border-radius-md" src="assets/img/faculty/faculty-architecture.webp" alt="image" data-faculty-card-image>
                   </div>
@@ -129,11 +129,9 @@
               </div>
               <div class="col-lg-8 col-md-6 col-12 ps-lg-0 my-auto">
                 <div class="card-body">
-                  <a href="courses.html">
+                  <a href="courses.html" data-faculty-card-body-link>
                     <h5 class="mb-0" data-faculty-card-title>Faculty of Architecture</h5>
-                    <h6 class="text-info" data-faculty-card-info>PUT</h6>
                   </a>
-                  <p data-faculty-card-description>Artist is a term applied to a person who engages in an activity deemed to be an art.</p>
                 </div>
               </div>
             </div>
@@ -207,11 +205,10 @@
 
         faculties.forEach((faculty, index) => {
           var clone = template.content.cloneNode(true);
-          clone.querySelector('[data-faculty-card-image]').src = `assets/img/faculty/${faculty.image}`;
-          clone.querySelector('[data-faculty-card-link]').href = "OK";
+          clone.querySelector('[data-faculty-card-image]').src = `assets/img/faculties/${faculty.image}`;
+          // clone.querySelector('[data-faculty-card-image-link]').href = "OK";
+          // clone.querySelector('[data-faculty-card-body-link]').href = "OK";
           clone.querySelector('[data-faculty-card-title]').textContent = `Faculty of ${faculty.name}`;
-          clone.querySelector('[data-faculty-card-info]').textContent = "OK";
-          clone.querySelector('[data-faculty-card-description]').textContent = faculty.description;
           if (index % 2 == 0) {
             // create row
             lastRow = document.createElement("div");
