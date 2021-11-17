@@ -205,9 +205,9 @@
 
         faculties.forEach((faculty, index) => {
           var clone = template.content.cloneNode(true);
-          clone.querySelector('[data-faculty-card-image]').src = `assets/img/faculties/${faculty.image}`;
-          // clone.querySelector('[data-faculty-card-image-link]').href = "OK";
-          // clone.querySelector('[data-faculty-card-body-link]').href = "OK";
+          clone.querySelector('[data-faculty-card-image]').src = `assets/img/faculties/${faculty.imageUrl}`;
+          clone.querySelector('[data-faculty-card-image-link]').href = `courses.html?faculty=${faculty.id}`;
+          clone.querySelector('[data-faculty-card-body-link]').href = `courses.html?faculty=${faculty.id}`;
           clone.querySelector('[data-faculty-card-title]').textContent = `Faculty of ${faculty.name}`;
           if (index % 2 == 0) {
             // create row
