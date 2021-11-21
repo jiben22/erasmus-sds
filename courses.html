@@ -28,7 +28,7 @@
       <div class="col-12">
         <nav class="navbar navbar-expand-lg  blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
           <div class="container-fluid">
-            <a class="navbar-brand font-weight-bolder ms-sm-3" href="index.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
+            <a class="navbar-brand font-weight-bolder ms-sm-3" href="index.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
               Poznań University of Technology
             </a>
           </div>
@@ -42,7 +42,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto">
-            <h1 class="text-white pt-3 mt-n5">Faculty of Computing and Telecommunications</h1>
+            <h1 data-faculty-name class="text-white pt-3 mt-n5">Faculty of Computing and Telecommunications</h1>
           </div>
         </div>
       </div>
@@ -78,97 +78,36 @@
           <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-3 d-flex justify-content-center">
               <select class="form-select" aria-label="selectDiplomas" id="diploma-select">
-                <option selected>All diplomas</option>
-                <option value="B.Sc.">B.Sc. program in Architecture</option>
-                <option value="Master">Master program in Architecture</option>
+                <option selected>All degrees</option>
+                <option value="BSC">Bachelor of Sciences</option>
+                <option value="MASTER">Master</option>
+                <option value="PHD">Doctor of Philosophy</option>
               </select>
             </div>
           </div>
       </div>
     </div>
-    <div class="row align-items-center">
-      <div class="col-lg-3">
-        <div class="card shadow-lg" data-diploma="Master">
-          <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-            <div class="d-block blur-shadow-image">
-              <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg" alt="img-blur-shadow" class="img-fluid shadow rounded-3">
+    <section id="courses">
+      <template id="course-card">
+        <div class="col-lg-3" style="height: 24rem;">
+          <div class="card shadow-lg" data-diploma="MASTER">
+            <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+              <div class="d-block blur-shadow-image">
+                <img data-course-card-image src="assets/img/courses/MASTER.webp" alt="img-blur-shadow" class="img-fluid shadow rounded-3">
+              </div>
+              <div class="colored-shadow" style="background-image: url(&quot;assets/img/courses/MASTER.webp&quot;);"></div>
             </div>
-            <div class="colored-shadow" style="background-image: url(&quot;https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg&quot;);"></div>
-          </div>
-          <div class="card-body">
-            <a href="course.html">
-              <h5 class="mt-3">
-                Software Development Studio 2
-              </h5>
-            </a>
-            <p>
-              XXX
-            </p>
+            <div class="card-body">
+              <a href="course.html" target="_blank" data-course-card-body-link>
+                <h5 class="mt-3" data-course-card-title>
+                  Software Development Studio 2
+                </h5>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="card shadow-lg" data-diploma="Master">
-          <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-            <div class="d-block blur-shadow-image">
-              <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg" alt="img-blur-shadow" class="img-fluid shadow rounded-3">
-            </div>
-            <div class="colored-shadow" style="background-image: url(&quot;https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg&quot;);"></div>
-          </div>
-          <div class="card-body">
-            <a href="course.html">
-              <h5 class="mt-3">
-                Object programming
-              </h5>
-            </a>
-            <p>
-              XXX
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="card shadow-lg" data-diploma="B.Sc.">
-          <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-            <div class="d-block blur-shadow-image">
-              <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg" alt="img-blur-shadow" class="img-fluid shadow rounded-3">
-            </div>
-            <div class="colored-shadow" style="background-image: url(&quot;https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg&quot;);"></div>
-          </div>
-          <div class="card-body">
-            <a href="course.html">
-              <h5 class="mt-3">
-                Software Evolution and Maintenance
-              </h5>
-            </a>
-            <p>
-              XXX
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="card shadow-lg" data-diploma="B.Sc.">
-          <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-            <div class="d-block blur-shadow-image">
-              <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg" alt="img-blur-shadow" class="img-fluid shadow rounded-3">
-            </div>
-            <div class="colored-shadow" style="background-image: url(&quot;https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg&quot;);"></div>
-          </div>
-          <div class="card-body">
-            <a href="course.html">
-              <h5 class="mt-3">
-                Quality Management and Experimental Software Engineering
-              </h5>
-            </a>
-            <p>
-              XXX
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+      </template>
+    </section>
   <!-- End code added - List of availables courses -->
 
   <!-- -------   END PRE-FOOTER 2 - simple social line w/ title & 3 buttons    -------- -->
@@ -215,63 +154,87 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
   <script src="./assets/js/soft-design-system.min.js?v=1.0.5" type="text/javascript"></script>
   <script type="text/javascript">
-    if (document.getElementById('state1')) {
-      const countUp = new CountUp('state1', document.getElementById("state1").getAttribute("countTo"));
-      if (!countUp.error) {
-        countUp.start();
-      } else {
-        console.error(countUp.error);
-      }
-    }
-    if (document.getElementById('state2')) {
-      const countUp1 = new CountUp('state2', document.getElementById("state2").getAttribute("countTo"));
-      if (!countUp1.error) {
-        countUp1.start();
-      } else {
-        console.error(countUp1.error);
-      }
-    }
-    if (document.getElementById('state3')) {
-      const countUp2 = new CountUp('state3', document.getElementById("state3").getAttribute("countTo"));
-      if (!countUp2.error) {
-        countUp2.start();
-      } else {
-        console.error(countUp2.error);
-      };
+    const BASE_URL = 'http://localhost:8080';
+    const FACULTY_URL = 'faculties/{facultyId}';
+    const COURSES_URL = 'faculties/{facultyId}/courses';
+    
+    // get faculty id param
+    const paramsString = window.location.search;
+    let searchParams = new URLSearchParams(paramsString);
+    if (searchParams.has('faculty') && searchParams.get('faculty')) {
+      const facultyId = searchParams.get('faculty');
+      let facultyUrl = FACULTY_URL.replace('{facultyId}', facultyId);
+      let coursesUrl = COURSES_URL.replace('{facultyId}', facultyId);
+
+      // Get faculty name
+      fetch(`${BASE_URL}/${facultyUrl}`)
+      .then(response => response.json())
+      .then(faculty => {
+        document.querySelector('[data-faculty-name]').textContent = `Faculty of ${faculty.name}`;
+      })
+      .catch(error => console.error('Request failed', error));
+
+      // Get courses
+      fetch(`${BASE_URL}/${coursesUrl}`)
+      .then(response => response.json())
+      .then(data => createCards(data, facultyId))
+      .catch(error => console.error('Request failed', error));
+
+      const diplomaSelect = document.getElementById("diploma-select");
+      diplomaSelect.addEventListener("change", function() {
+          const diploma = this.value;
+          let coursesByDiplomaUrl = `${BASE_URL}/${coursesUrl}`;
+          if (Array('BSC', 'MASTER', 'PHD').indexOf(diploma) >= 0) {
+            coursesByDiplomaUrl += `?diploma=${diploma}`;
+          }
+        
+        fetch(coursesByDiplomaUrl)
+        .then(response => response.json())
+        .then(data => {
+          destroyCards();
+          createCards(data, facultyId)
+        })
+        .catch(error => console.error('Request failed', error));
+      });
     }
     
-    (function() {
-      const bsc = "B.Sc.";
-      const master = "Master";
-      const diplomaSelect = document.getElementById("diploma-select"); 
-      const hide = "none";
-      const show = "block";
+    /**
+     * Create course cards with a card template
+     */
+    const nbCourseCardsByRow = 4;
+    function createCards(courses, facultyId) {
+      if ('content' in document.createElement('template')) {
+        var coursesSection = document.querySelector("#courses");
+        var template = document.querySelector('#course-card');
+        var lastRow;
 
-      diplomaSelect.addEventListener("change", function() {
-        const diploma = this.value;
-        const masterCourse = document.querySelectorAll("[data-diploma='Master']");
-        const bscCourses = document.querySelectorAll("[data-diploma='B.Sc.']");
-
-        if (diploma == bsc) {
-          changeVisilityCourseCards(bscCourses, show);
-          changeVisilityCourseCards(masterCourse, hide);
-        } else if (diploma == master) {
-          changeVisilityCourseCards(masterCourse, show);
-          changeVisilityCourseCards(bscCourses, hide);
-        } else {
-          changeVisilityCourseCards(bscCourses, show);
-          changeVisilityCourseCards(masterCourse, show);
-        }
-      });
-
-      function changeVisilityCourseCards(coursesToHide, visibility) {
-        if(coursesToHide.length > 0) {
-          for(var index = 0; index < coursesToHide.length; index++) {
-            coursesToHide[index].parentElement.style.display = visibility;
+        courses.forEach((course, index) => {
+          var clone = template.content.cloneNode(true);
+          clone.querySelector('[data-diploma]').dataset.diploma = course.diploma;
+          clone.querySelector('[data-course-card-title]').textContent = course.title;
+          clone.querySelector('[data-course-card-image]').src = `assets/img/courses/${course.diploma}.webp`;
+          clone.querySelector('[data-course-card-body-link]').href = `course.html?faculty=${facultyId}&id=${course.id}`;
+          if (index % nbCourseCardsByRow == 0) {
+            // create row
+            lastRow = document.createElement("div");
+            coursesSection.appendChild(lastRow).className = "row align-items-center course-row";
           }
-        }
+          // Add new course card
+          lastRow.appendChild(clone);
+        });
+      } else {
+        console.error('Template not supported!')
+      // Find another way to add the rows to the table because
+      // the HTML template element is not supported.
       }
-    })();
+    }
+
+    function destroyCards() {
+      let courseRows = document.querySelectorAll('.course-row');
+      courseRows.forEach(courseRow => {
+        courseRow.innerHTML = '';
+      });
+    }
   </script>
 </body>
 

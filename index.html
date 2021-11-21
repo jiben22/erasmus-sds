@@ -132,7 +132,6 @@
                   <a href="courses.html" data-faculty-card-body-link>
                     <h5 class="mb-0" data-faculty-card-title>Faculty of Architecture</h5>
                   </a>
-                  <p data-faculty-card-description>Artist is a term applied to a person who engages in an activity deemed to be an art.</p>
                 </div>
               </div>
             </div>
@@ -198,6 +197,7 @@
     /**
      * Create Faculty cards with a card template
      */
+    const nbFacultyCardsByRow = 2;
     function createCards(faculties) {
       if ('content' in document.createElement('template')) {
         var facultiesSection = document.querySelector("#faculties");
@@ -210,7 +210,7 @@
           clone.querySelector('[data-faculty-card-image-link]').href = `courses.html?faculty=${faculty.id}`;
           clone.querySelector('[data-faculty-card-body-link]').href = `courses.html?faculty=${faculty.id}`;
           clone.querySelector('[data-faculty-card-title]').textContent = `Faculty of ${faculty.name}`;
-          if (index % 2 == 0) {
+          if (index % nbFacultyCardsByRow == 0) {
             // create row
             lastRow = document.createElement("div");
             facultiesSection.appendChild(lastRow).className = "row mt-4";
