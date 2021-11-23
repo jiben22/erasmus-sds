@@ -28,7 +28,7 @@
     <div class="col-12">
       <nav class="navbar navbar-expand-lg  blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
         <div class="container-fluid">
-          <a class="navbar-brand font-weight-bolder ms-sm-3" href="index.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
+          <a class="navbar-brand font-weight-bolder ms-sm-3" href="index.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
             Poznań University of Technology
           </a>
           <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
@@ -39,34 +39,12 @@
                   <img src="./assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
                 </a>
                 <div class="dropdown-menu dropdown-menu-animation dropdown-md p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuPages">
-                  <div class="d-none d-lg-block">
-                    <a href="./courses.html" class="dropdown-item border-radius-md">
-                      <span class="ps-3">Faculty of Architecture</span>
-                    </a>
-                    <a href="./courses.html" class="dropdown-item border-radius-md">
-                      <span class="ps-3">Faculty of Automatic Control, Robotics & Electrical Engineering</span>
-                    </a>
-                    <a href="./courses.html" class="dropdown-item border-radius-md">
-                      <span class="ps-3">Faculty of Chemical Technology</span>
-                    </a>
-                    <a href="./courses.html" class="dropdown-item border-radius-md">
-                      <span class="ps-3">Faculty of Civil and Transport Engineering</span>
-                    </a>
-                    <a href="./courses.html" class="dropdown-item border-radius-md">
-                      <span class="ps-3">Faculty of Computing and Telecommunications</span>
-                    </a>
-                    <a href="./courses.html" class="dropdown-item border-radius-md">
-                      <span class="ps-3">Faculty of Engineering Management</span>
-                    </a>
-                    <a href="./courses.html" class="dropdown-item border-radius-md">
-                      <span class="ps-3">Faculty of Environmental Engineering and Energy</span>
-                    </a>
-                    <a href="./courses.html" class="dropdown-item border-radius-md">
-                      <span class="ps-3">Faculty of Materials Engineering and Technical Physics</span>
-                    </a>
-                    <a href="./courses.html" class="dropdown-item border-radius-md">
-                      <span class="ps-3">Faculty of Mechanical Engineering</span>
-                    </a>
+                  <div class="d-none d-lg-block" id="facultiesMenu">
+                    <template id="faculty-link">
+                      <a data-faculty-link href="./courses.html" class="dropdown-item border-radius-md">
+                        <span data-faculty-link-body class="ps-3">Faculty of Architecture</span>
+                      </a>
+                    </template>
                   </div>
                 </div>
               </li>
@@ -191,9 +169,34 @@
 
     fetch(`${BASE_URL}/${FACULTIES_URL}`)
     .then(response => response.json())
-    .then(data => createCards(data))
+    .then(data => {
+      createFacultiesLink(data);
+      createCards(data);
+    })
     .catch(error => console.error('Request failed', error));
     
+    /**
+     * Create Faculty links
+     */
+    function createFacultiesLink(faculties) {
+      if ('content' in document.createElement('template')) {
+        var facultiesMenu = document.querySelector("#facultiesMenu");
+        var template = document.querySelector('#faculty-link');
+
+        faculties.forEach((faculty, index) => {
+          var clone = template.content.cloneNode(true);
+          clone.querySelector('[data-faculty-link]').href = `courses.html?faculty=${faculty.id}`;
+          clone.querySelector('[data-faculty-link-body]').textContent = `Faculty of ${faculty.name}`;
+          // Add new faculty link
+          facultiesMenu.appendChild(clone)
+        });
+      } else {
+        console.error('Template not supported!')
+      // Find another way to add the rows to the table because
+      // the HTML template element is not supported.
+      }
+    }
+
     /**
      * Create Faculty cards with a card template
      */
