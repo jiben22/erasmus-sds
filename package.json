@@ -4,7 +4,7 @@
   "description": "Freebie Design System for Bootstrap 5",
   "main": "index.html",
   "directories": {
-    "example": "root"
+    "doc": "docs"
   },
   "scripts": {
     "open-app": "gulp open-app",
