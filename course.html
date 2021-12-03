@@ -63,7 +63,7 @@
     </div>
   </header>
 
-  <section class="py-6">
+  <section class="py-4">
     <div class="container">
       <div class="row">
         <div class="col-lg-7 z-index-2 border-radius-xl mt-n10 mx-auto py-3 blur shadow-blur">
@@ -127,6 +127,27 @@
       </div>
     </div>
   </section>
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-lg-6 mx-auto text-center">
+        <h2 class="mb-3">Coordinator(s)</h2>
+      </div>
+    </div>
+    <div class="row" id="coordinators">
+      <template id="coordinator-card">
+        <div class="col-lg-6 col-12">
+          <div class="card-profile overflow-hidden">
+            <div class="col-lg-6 col-md-6 col-12 ps-lg-0 my-auto">
+              <div class="card-body">
+                <h5 data-coordinator-card-name class="mb-0">Dariusz Brzezinski</h5>
+                <h6 data-coordinator-card-email class="text-info">Dariusz.Brzezinski@cs.put.poznan.pl</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
 
   <!-- -------   END PRE-FOOTER 2 - simple social line w/ title & 3 buttons    -------- -->
   <footer class="footer pt-5 mt-5">
@@ -169,7 +190,10 @@
 
       fetch(`${BASE_URL}/${courseUrl}`)
         .then(response => response.json())
-        .then(data => editCourseInformation(data))
+        .then(data => {
+          editCourseInformation(data);
+          createCoordinatorCards(data);
+        })
         .catch(error => console.error('Request failed', error));
     }
 
@@ -178,12 +202,30 @@
      */
     function editCourseInformation(course) {
       document.querySelector('[data-course-title]').textContent = course.title;
-      // document.querySelector('[data-faculty-name]').textContent = `Faculty of XXX`;
       document.querySelector('[data-course-ects]').textContent = course.ects;
       document.querySelector('[data-course-hours]').textContent = course.hours;
       document.querySelector('[data-course-semester]').textContent = course.semester.charAt(0) + course.semester.slice(1).toLowerCase();
       document.querySelector('[data-course-description]').textContent = course.description;
       document.querySelector('[data-course-description-link]').href = `courses/${course.descriptionCard}`;;
+    }
+
+    function createCoordinatorCards(course) {
+      if ('content' in document.createElement('template')) {
+        var coordinatorsRow = document.querySelector("#coordinators");
+        var template = document.querySelector('#coordinator-card');
+
+        course.coordinators.forEach(coordinator => {
+          var clone = template.content.cloneNode(true);
+          clone.querySelector('[data-coordinator-card-name]').textContent = `${coordinator.name} ${coordinator.lastName}`;
+          clone.querySelector('[data-coordinator-card-email]').textContent = coordinator.email;
+          // Add new coordinator card
+          coordinatorsRow.appendChild(clone);
+        });
+      } else {
+        console.error('Template not supported!')
+      // Find another way to add the rows to the table because
+      // the HTML template element is not supported.
+      }
     }
   </script>
 </body>
