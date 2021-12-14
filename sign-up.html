@@ -30,7 +30,8 @@
             <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
               </li>
               <li class="nav-item ms-lg-auto">
-                <a href="sign-in.html" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Sign in</a>
+                <a id="signin" href="sign-in.html" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Sign in</a>
+                <p id="identity" class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">Arthur COAT</p>
               </li>
             </ul>
           </div>
@@ -82,6 +83,17 @@
       </div>
     </div>
   </section>
+  <script type="text/javascript">
+    if (window.localStorage.getItem("token")) {
+      document.querySelector('#signin').style.display = "none";
+      const firstName = window.localStorage.getItem("firstname");
+      const lastName = window.localStorage.getItem("lastname");
+      document.querySelector('#identity').textContent = `${firstName} ${lastName}`;
+    } else {
+      document.querySelector('#identity').textContent = "";
+      document.querySelector('#signin').textContent = "Sign in";
+    }
+  </script>
 </body>
 
 </html>

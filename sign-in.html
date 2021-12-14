@@ -44,17 +44,17 @@
               <div class="card-body">
                 <form role="form">
                   <div class="mb-3">
-                    <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                    <input id="email" type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                   </div>
                   <div class="mb-3">
-                    <input type="email" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                    <input id="password" type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                   </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="rememberMe">
                     <label class="form-check-label" for="rememberMe">Remember me</label>
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                    <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" onclick="signin()">Sign in</button>
                   </div>
                 </form>
               </div>
@@ -79,6 +79,31 @@
       </div>
     </div>
   </section>
+  <script type="text/javascript">
+    const BASE_URL = 'http://localhost:8080';
+    const LOGIN_URL = 'login';
+
+    function signin() {
+      const email = document.querySelector("#email").value;
+      const password = document.querySelector("#password").value;
+
+      fetch(`${BASE_URL}/${LOGIN_URL}?` + new URLSearchParams({
+        email: email,
+        password: password,
+      }))
+      .then(response => response.json())
+      .then(data => {
+        // Save token, firstname and lastname to local storage
+        if (data.token) {
+          window.localStorage.setItem("token", data.token);
+          window.localStorage.setItem("firstname", data.firstname);
+          window.localStorage.setItem("lastname", data.lastname);
+        }
+        window.location.href = "index.html";
+      })
+      .catch(error => console.error('Request failed', error));
+    }
+  </script>
 </body>
 
 </html>
