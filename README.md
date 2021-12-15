@@ -16,7 +16,7 @@ Describe the role and responsibilites of each member of the project
   - Helps the team
   - Helps to remove problems of the team
 
-- **Developers** Arthur & Benjamin
+- **Developers** Arthur & Benjamin & Cláudio
   - Create plan for the sprint
   - Assure that the increment meets the Definition of Done
   - Adapt the plan
