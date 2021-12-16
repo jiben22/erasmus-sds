@@ -30,6 +30,15 @@
               Poznań University of Technology
             </a>
           </div>
+          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+            <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+              </li>
+              <li class="nav-item ms-lg-auto">
+                <a id="signin" href="sign-in.html" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Sign in</a>
+                <p id="identity" class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">Arthur COAT</p>
+              </li>
+            </ul>
+          </div>
         </nav>
         <!-- End Navbar -->
       </div>
@@ -40,7 +49,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto">
-            <h1 data-course-title class="text-white pt-3 mt-n5">Software Developement Studio 2</h1>
+            <h1 data-course-title class="text-white pt-2 mt-n5">Software Developement Studio 2</h1>
           </div>
         </div>
       </div>
@@ -63,7 +72,7 @@
     </div>
   </header>
 
-  <section class="py-6">
+  <section class="py-4">
     <div class="container">
       <div class="row">
         <div class="col-lg-7 z-index-2 border-radius-xl mt-n10 mx-auto py-3 blur shadow-blur">
@@ -127,8 +136,151 @@
       </div>
     </div>
   </section>
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-lg-6 mx-auto text-center">
+        <h2 class="mb-3">Coordinator(s)</h2>
+      </div>
+    </div>
+    <div class="row" id="coordinators">
+      <template id="coordinator-card">
+        <div class="col-lg-6 col-12">
+          <div class="card-profile overflow-hidden">
+            <div class="col-lg-6 col-md-6 col-12 ps-lg-0 my-auto">
+              <div class="card-body">
+                <h5 data-coordinator-card-name class="mb-0">Dariusz Brzezinski</h5>
+                <h6 data-coordinator-card-email class="text-info">Dariusz.Brzezinski@cs.put.poznan.pl</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
 
-  <!-- -------   END PRE-FOOTER 2 - simple social line w/ title & 3 buttons    -------- -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto text-center">
+          <h2 class="mb-3">Testimonials</h2>
+          <p>Reviews of previous Erasmus+ students about this course</p>
+        </div>
+      </div>
+      <div class="row mt-6">
+        <div class="col-lg-4 col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="author align-items-center">
+                <img src="./assets/img/team-1.jpg" alt="..." class="avatar shadow">
+                <div class="name ps-2">
+                  <span>Luciana Machado</span>
+                  <div class="stats">
+                    <small>2021</small>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-4">"If you have the opportunity to play this game of life you need to appreciate every moment."</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-8 ms-md-auto">
+          <div class="card">
+            <div class="card-body">
+              <div class="author align-items-center">
+                <img src="./assets/img/marie.jpg" alt="..." class="avatar shadow">
+                <div class="name ps-2">
+                  <span>Sofia Rodrigues</span>
+                  <div class="stats">
+                    <small>2021</small>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-4">"If you have the opportunity to play this game of life you need to appreciate every moment."</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="author align-items-center">
+                <img src="./assets/img/team-3.jpg" alt="..." class="avatar shadow">
+                <div class="name ps-2">
+                  <span>Arthur Coat</span>
+                  <div class="stats">
+                    <small>2021</small>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-4">"If you have the opportunity to play this game of life you need to appreciate every moment."</p>
+            </div>
+          </div>
+        </div> 
+      </div>
+      <div class="container">
+        <div class="row justify-space-between py-2">
+          <div class="col-lg-4 mx-auto">
+            <ul class="pagination pagination-primary m-4">
+              <li class="page-item">
+                <a class="page-link" href="javascript:;" aria-label="Previous">
+                  <span aria-hidden="true"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="javascript:;">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:;">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:;">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:;">4</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:;">5</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:;" aria-label="Next">
+                  <span aria-hidden="true"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 d-flex justify-content-center flex-column">
+          <div class="justify-content-center p-4 shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
+            <div class="text-center">
+              <h3 class="text-gradient text-primary">Add my testimonial</h3>
+            </div>
+            <form id="contact-form" method="post" autocomplete="off">
+                <div class="form-group mb-0 mt-md-0 mt-4">
+                  <label>Short summary of what you like about this course, what could be improved and what you didn't like.</label>
+                  <textarea name="message" class="form-control" id="message" rows="6" placeholder="250 characters maximum"></textarea>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 text-center">
+                    <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">Send my testimonial</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-5 ms-auto">
+            <div class="position-relative">
+              <img class="max-width-50 w-100 position-relative z-index-2" src="./assets/img/illustrations/chat.png" alt="image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer pt-5 mt-5">
     <hr class="horizontal dark mb-5">
     <div class="container">
@@ -169,7 +321,10 @@
 
       fetch(`${BASE_URL}/${courseUrl}`)
         .then(response => response.json())
-        .then(data => editCourseInformation(data))
+        .then(data => {
+          editCourseInformation(data);
+          createCoordinatorCards(data);
+        })
         .catch(error => console.error('Request failed', error));
     }
 
@@ -178,12 +333,40 @@
      */
     function editCourseInformation(course) {
       document.querySelector('[data-course-title]').textContent = course.title;
-      // document.querySelector('[data-faculty-name]').textContent = `Faculty of XXX`;
       document.querySelector('[data-course-ects]').textContent = course.ects;
       document.querySelector('[data-course-hours]').textContent = course.hours;
       document.querySelector('[data-course-semester]').textContent = course.semester.charAt(0) + course.semester.slice(1).toLowerCase();
       document.querySelector('[data-course-description]').textContent = course.description;
-      document.querySelector('[data-course-description-link]').href = `courses/${course.descriptionCard}`;;
+      document.querySelector('[data-course-description-link]').href = `courses/${course.descriptionCardUrl}`;;
+    }
+
+    function createCoordinatorCards(course) {
+      if ('content' in document.createElement('template')) {
+        var coordinatorsRow = document.querySelector("#coordinators");
+        var template = document.querySelector('#coordinator-card');
+
+        course.coordinators.forEach(coordinator => {
+          var clone = template.content.cloneNode(true);
+          clone.querySelector('[data-coordinator-card-name]').textContent = `${coordinator.name} ${coordinator.lastName}`;
+          clone.querySelector('[data-coordinator-card-email]').textContent = coordinator.email;
+          // Add new coordinator card
+          coordinatorsRow.appendChild(clone);
+        });
+      } else {
+        console.error('Template not supported!')
+      // Find another way to add the rows to the table because
+      // the HTML template element is not supported.
+      }
+    }
+
+    if (window.localStorage.getItem("token")) {
+      document.querySelector('#signin').style.display = "none";
+      const firstName = window.localStorage.getItem("firstname");
+      const lastName = window.localStorage.getItem("lastname");
+      document.querySelector('#identity').textContent = `${firstName} ${lastName}`;
+    } else {
+      document.querySelector('#identity').textContent = "";
+      document.querySelector('#signin').textContent = "Sign in";
     }
   </script>
 </body>

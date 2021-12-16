@@ -12,6 +12,8 @@
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/soft-design-system.css?v=1.0.5" rel="stylesheet" />
   </head>
@@ -26,6 +28,15 @@
             <a class="navbar-brand font-weight-bolder ms-sm-3" href="index.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
               Poznań University of Technology
             </a>
+          </div>
+          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+            <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+              </li>
+              <li class="nav-item ms-lg-auto">
+                <a id="signin" href="sign-in.html" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Sign in</a>
+                <p id="identity" class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">Arthur COAT</p>
+              </li>
+            </ul>
           </div>
         </nav>
         <!-- End Navbar -->
@@ -206,6 +217,16 @@
       courseRows.forEach(courseRow => {
         courseRow.innerHTML = '';
       });
+    }
+
+    if (window.localStorage.getItem("token")) {
+      document.querySelector('#signin').style.display = "none";
+      const firstName = window.localStorage.getItem("firstname");
+      const lastName = window.localStorage.getItem("lastname");
+      document.querySelector('#identity').textContent = `${firstName} ${lastName}`;
+    } else {
+      document.querySelector('#identity').textContent = "";
+      document.querySelector('#signin').textContent = "Sign in";
     }
   </script>
 </body>
