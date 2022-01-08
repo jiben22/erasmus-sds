@@ -11,6 +11,8 @@
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- CSS Files -->
   <link id="pagestyle" href="./assets/css/soft-design-system.css?v=1.0.5" rel="stylesheet" />
 </head>
@@ -164,56 +166,28 @@
           <p>Reviews of previous Erasmus+ students about this course</p>
         </div>
       </div>
-      <div class="row mt-6">
-        <div class="col-lg-4 col-md-8">
-          <div class="card">
-            <div class="card-body">
-              <div class="author align-items-center">
-                <img src="./assets/img/team-1.jpg" alt="..." class="avatar shadow">
-                <div class="name ps-2">
-                  <span>Luciana Machado</span>
-                  <div class="stats">
-                    <small>2021</small>
+      <section id="testimonials">
+        <div class="row mt-6">
+          <template id="testimonial-card">
+            <div class="col-lg-4 col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <div class="author align-items-center">
+                  <img data-testimonial-card-avatar src="./assets/img/team-1.jpg" alt="..." class="avatar shadow">
+                  <div class="name ps-2">
+                    <span data-testimonial-card-user>Luciana Machado</span>
+                    <div class="stats">
+                      <small data-testimonial-card-year>2021</small>
+                    </div>
                   </div>
                 </div>
+                <p data-testimonial-card-comment class="mt-4">"If you have the opportunity to play this game of life you need to appreciate every moment."</p>
               </div>
-              <p class="mt-4">"If you have the opportunity to play this game of life you need to appreciate every moment."</p>
             </div>
-          </div>
+          </template>
         </div>
-        <div class="col-lg-4 col-md-8 ms-md-auto">
-          <div class="card">
-            <div class="card-body">
-              <div class="author align-items-center">
-                <img src="./assets/img/marie.jpg" alt="..." class="avatar shadow">
-                <div class="name ps-2">
-                  <span>Sofia Rodrigues</span>
-                  <div class="stats">
-                    <small>2021</small>
-                  </div>
-                </div>
-              </div>
-              <p class="mt-4">"If you have the opportunity to play this game of life you need to appreciate every moment."</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-8">
-          <div class="card">
-            <div class="card-body">
-              <div class="author align-items-center">
-                <img src="./assets/img/team-3.jpg" alt="..." class="avatar shadow">
-                <div class="name ps-2">
-                  <span>Arthur Coat</span>
-                  <div class="stats">
-                    <small>2021</small>
-                  </div>
-                </div>
-              </div>
-              <p class="mt-4">"If you have the opportunity to play this game of life you need to appreciate every moment."</p>
-            </div>
-          </div>
-        </div> 
-      </div>
+      </section>
+      </section>
       <div class="container">
         <div class="row justify-space-between py-2">
           <div class="col-lg-4 mx-auto">
@@ -249,21 +223,21 @@
       </div>
     </div>
 
-    <div class="container">
+    <div id="addTestimonialSection" class="container">
       <div class="row">
         <div class="col-lg-7 d-flex justify-content-center flex-column">
           <div class="justify-content-center p-4 shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
             <div class="text-center">
               <h3 class="text-gradient text-primary">Add my testimonial</h3>
             </div>
-            <form id="contact-form" method="post" autocomplete="off">
+            <form id="testimonial-form" method="post" autocomplete="off">
                 <div class="form-group mb-0 mt-md-0 mt-4">
                   <label>Short summary of what you like about this course, what could be improved and what you didn't like.</label>
-                  <textarea name="message" class="form-control" id="message" rows="6" placeholder="250 characters maximum"></textarea>
+                  <textarea name="comment" class="form-control" id="comment" rows="6" placeholder="250 characters maximum"></textarea>
                 </div>
                 <div class="row">
                   <div class="col-md-12 text-center">
-                    <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">Send my testimonial</button>
+                    <button id="submit-testimonial" type="submit" class="btn bg-gradient-primary mt-3 mb-0" onclick="createTestimonial()">Send my testimonial</button>
                   </div>
                 </div>
               </div>
@@ -304,15 +278,18 @@
   <script type="text/javascript">
     const BASE_URL = 'http://localhost:8080';
     const COURSES_URL = 'faculties/{facultyId}/courses/{courseId}';
+    const TESTIMONIAL_URL = 'faculties/{facultyId}/courses/{courseId}/testimonial';
 
     // get faculty id param
     const paramsString = window.location.search;
+    let facultyId;
+    let courseId;
     let searchParams = new URLSearchParams(paramsString);
     if (searchParams.has('faculty') && searchParams.get('faculty') &&
       searchParams.has('id') && searchParams.get('id')) {
-      const facultyId = searchParams.get('faculty');
-      const courseId = searchParams.get('id');
-      console.log(facultyId, courseId);
+      facultyId = searchParams.get('faculty');
+      courseId = searchParams.get('id');
+
       let courseUrl = COURSES_URL
         .replace('{facultyId}', facultyId)
         .replace('{courseId}', courseId);
@@ -322,6 +299,8 @@
         .then(data => {
           editCourseInformation(data);
           createCoordinatorCards(data);
+          createTestimonialCards(data);
+          hideAddTestimonialSection(data);
         })
         .catch(error => console.error('Request failed', error));
     }
@@ -356,6 +335,100 @@
       // the HTML template element is not supported.
       }
     }
+
+    const nbTestimonialCardsByRow = 3;
+    function createTestimonialCards(course) {
+      if ('content' in document.createElement('template')) {
+        var testimonialsSection = document.querySelector("#testimonials");
+        var template = document.querySelector('#testimonial-card');
+        var lastRow;
+
+        let teamNumber = 1;
+        course.testimonials.forEach((testimonial, index) => {
+          teamNumber = index % nbTestimonialCardsByRow + 1;
+
+          var clone = template.content.cloneNode(true);
+          clone.querySelector('[data-testimonial-card-avatar]').src = `./assets/img/team-${teamNumber}.jpg`;
+          clone.querySelector('[data-testimonial-card-user]').textContent = `${testimonial.erasmusStudent.firstname} ${testimonial.erasmusStudent.lastname}`;
+          clone.querySelector('[data-testimonial-card-year]').textContent = new Date(testimonial.date).getFullYear();
+          clone.querySelector('[data-testimonial-card-comment]').textContent = testimonial.comment;
+          if (index % nbTestimonialCardsByRow == 0) {
+            // create row
+            lastRow = document.createElement("div");
+            testimonialsSection.appendChild(lastRow).className = "row mt-6";
+          }
+          // Add new course card
+          lastRow.appendChild(clone);
+        });
+      } else {
+        console.error('Template not supported!')
+      // Find another way to add the rows to the table because
+      // the HTML template element is not supported.
+      }
+    }
+
+    function createTestimonial() {
+      const comment = document.querySelector("#comment").value;
+
+      let testimonialUrl = TESTIMONIAL_URL
+        .replace('{facultyId}', facultyId)
+        .replace('{courseId}', courseId);
+
+      try {
+        (async () => {
+          const rawResponse = await fetch(`${BASE_URL}/${testimonialUrl}`, {
+            method: "POST",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              erasmusStudent: {
+                email: window.localStorage.getItem("email")
+              },
+              comment: comment,
+              date: new Date(),
+              course: {
+                id: courseId
+              }
+            })
+          });
+
+          const content = await rawResponse.json();
+          console.log(content);
+          window.location.reload();
+        })();
+      } catch(error) {
+        console.error('Request failed', error);
+      }
+    }
+
+    function hide (elements) {
+      elements = elements.length ? elements : [elements];
+      for (var index = 0; index < elements.length; index++) {
+        elements[index].style.display = 'none';
+      }
+    }
+
+    /**
+     * Hide add testimonial part if user is not logged or he has already post a comment
+    */
+    function hideAddTestimonialSection(course) {
+      if (!window.localStorage.getItem("token")) {
+        hide(document.getElementById('addTestimonialSection'));
+      } else {
+        course.testimonials.forEach(testimonial => {
+          if (testimonial.erasmusStudent.email == window.localStorage.getItem("email")) {
+            hide(document.getElementById('addTestimonialSection'));
+          }
+        });
+      }
+    }
+
+    // Avoid form's submission
+    var form = document.getElementById("testimonial-form");
+    function handleForm(event) { event.preventDefault(); } 
+    form.addEventListener('submit', handleForm);
 
     if (window.localStorage.getItem("token")) {
       document.querySelector('#signin').style.display = "none";
