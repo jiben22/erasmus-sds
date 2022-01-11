@@ -35,6 +35,7 @@
               <li class="nav-item ms-lg-auto">
                 <a id="signin" href="sign-in.html" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Sign in</a>
                 <p id="identity" class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">Arthur COAT</p>
+                <i id="icon-logout" class="fas fa-sign-out-alt" style="margin-left: 20px;" onclick="logout()"></i>
               </li>
             </ul>
           </div>
@@ -217,6 +218,14 @@
       courseRows.forEach(courseRow => {
         courseRow.innerHTML = '';
       });
+    }
+
+    function logout() {
+      window.localStorage.removeItem("token");
+      window.localStorage.removeItem("firstname");
+      window.localStorage.removeItem("lastname");
+      window.localStorage.removeItem("email");
+      window.location.href = "sign-in.html";
     }
 
     if (window.localStorage.getItem("token")) {
