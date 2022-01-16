@@ -97,17 +97,6 @@
         password: password,
       }))
       .then(response => response.json())
-
-      .then(data => {
-        // Save token, firstname, lastname and email to local storage
-        if (data.token) {
-          window.localStorage.setItem("token", data.token);
-          window.localStorage.setItem("firstname", data.firstname);
-          window.localStorage.setItem("lastname", data.lastname);
-          window.localStorage.setItem("email", data.email);
-        }
-        window.location.href = "index.html";
-
       .then(response => {
         if (response.isSuccess == false) {
           document.querySelector('#error-message').style.display = "block";
