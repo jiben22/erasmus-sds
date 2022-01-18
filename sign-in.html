@@ -49,6 +49,9 @@
                   <div class="mb-3">
                     <input id="password" type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                   </div>
+                  <div id="error-message">
+                    <p class="mb-4 text-sm mx-auto" style="color: red;">Error invalid email or password, please try again.</p>
+                  </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="rememberMe">
                     <label class="form-check-label" for="rememberMe">Remember me</label>
@@ -83,6 +86,8 @@
     const BASE_URL = 'http://localhost:8080';
     const LOGIN_URL = 'login';
 
+    document.querySelector('#error-message').style.display = "none";
+
     function signin() {
       const email = document.querySelector("#email").value;
       const password = document.querySelector("#password").value;
@@ -92,14 +97,20 @@
         password: password,
       }))
       .then(response => response.json())
-      .then(data => {
-        // Save token, firstname and lastname to local storage
-        if (data.token) {
-          window.localStorage.setItem("token", data.token);
-          window.localStorage.setItem("firstname", data.firstname);
-          window.localStorage.setItem("lastname", data.lastname);
-        }
-        window.location.href = "index.html";
+      .then(response => {
+        if (response.isSuccess == false) {
+          document.querySelector('#error-message').style.display = "block";
+        } else {
+          // Save token, firstname, lastname and email to local storage
+          const { token, firstname, lastname, email } = response;
+          if (token) {
+            window.localStorage.setItem("token", token);
+            window.localStorage.setItem("firstname", firstname);
+            window.localStorage.setItem("lastname", lastname);
+            window.localStorage.setItem("email", email);
+          }
+          window.location.href = "index.html";
+          }
       })
       .catch(error => console.error('Request failed', error));
     }
