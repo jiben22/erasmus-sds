@@ -49,30 +49,42 @@
           <div class="col-lg-7 d-flex justify-content-center flex-column">
             <div class="card card-body d-flex justify-content-center shadow-lg p-5 blur align-items-center">
               <h3 class="text-center">Sign up</h3>
-              <form role="form" id="contact-form" method="post" autocomplete="off">
+              <form role="form" id="signup-form" method="post" autocomplete="off">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-6">
-                      <label>First Name</label>
-                      <div class="input-group mb-4">
-                        <input class="form-control" placeholder="" aria-label="First Name..." type="text">
+                    <div class="mb-4">
+                      <label>Email Address</label>
+                      <div class="input-group">
+                        <input type="email" id="email" class="form-control" placeholder="">
                       </div>
                     </div>
-                    <div class="col-md-6 ps-2">
+                    <div class="mb-4">
+                      <label>First Name</label>
+                      <div class="input-group">
+                        <input type="text" id="firstname" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                    <div class="mb-4">
                       <label>Last Name</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" placeholder="" aria-label="Last Name...">
+                        <input type="text" id="lastname" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                    <div class="mb-4">
+                      <label>Password</label>
+                      <div class="input-group">
+                        <input type="password" id="password" class="form-control" placeholder="">
                       </div>
                     </div>
                   </div>
                   <div class="mb-4">
-                    <label>Email Address</label>
+                    <label>Confirm Password</label>
                     <div class="input-group">
-                      <input type="email" class="form-control" placeholder="">
+                      <input type="password" id="confirmPassword" class="form-control" placeholder="">
                     </div>
                   </div>
                     <div class="col-md-12">
-                      <button type="submit" class="btn bg-gradient-dark w-100">Sign up</button>
+                      <button type="submit" onclick="signup()" class="btn bg-gradient-dark w-100">Sign up</button>
                     </div>
                   </div>
                 </div>
@@ -84,6 +96,55 @@
     </div>
   </section>
   <script type="text/javascript">
+    const BASE_URL = 'http://localhost:8080';
+    const SIGNUP_URL = 'sign-up';
+
+    //document.querySelector('#error-message').style.display = "none";
+
+    function signup() {
+      const email = document.querySelector("#email").value;
+      const firstname = document.querySelector("#firstname").value;
+      const lastname = document.querySelector("#lastname").value;
+      const password = document.querySelector("#password").value;
+      const confirmPassword = document.querySelector("#confirmPassword").value;
+
+      try {
+        (async () => {
+          const rawResponse = await fetch(`${BASE_URL}/${SIGNUP_URL}`, {
+            method: "POST",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: email,
+              firstname: firstname,
+              lastname: lastname,
+              password: password,
+              confirmPassword: confirmPassword
+            })
+          });
+
+          const content = await rawResponse.json();
+          console.log(content);
+          if(content == true){
+            window.location.href = "sign-in.html";
+          } else {
+
+          }
+          //window.location.reload();
+        })();
+      } catch(error) {
+        console.error('Request failed', error);
+      }
+    }
+
+    // Avoid form's submission
+    var form = document.getElementById("signup-form");
+    function handleForm(event) { event.preventDefault(); }
+    form.addEventListener('submit', handleForm);
+
+
     if (window.localStorage.getItem("token")) {
       document.querySelector('#signin').style.display = "none";
       const firstName = window.localStorage.getItem("firstname");
@@ -93,6 +154,7 @@
       document.querySelector('#identity').textContent = "";
       document.querySelector('#signin').textContent = "Sign in";
     }
+
   </script>
 </body>
 
