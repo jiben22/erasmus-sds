@@ -214,7 +214,7 @@
       window.location.href = "sign-in.html";
     }
 
-    if (window.localStorage.getItem("token")) {
+    if (window.localStorage.getItem("firstname") && window.localStorage.getItem("lastname")) {
       document.querySelector('#signin').style.display = "none";
       const firstName = window.localStorage.getItem("firstname");
       const lastName = window.localStorage.getItem("lastname");

@@ -103,15 +103,15 @@
         } else {
           // Save token, firstname, lastname and email to local storage
           const { token, firstname, lastname, email } = response;
-          if (token) {
+          if (window.localStorage.getItem("token")) {
             window.localStorage.setItem("token", token);
-            window.localStorage.setItem("firstname", firstname);
-            window.localStorage.setItem("lastname", lastname);
-            window.localStorage.setItem("email", email);
           }
+          window.localStorage.setItem("firstname", firstname);
+          window.localStorage.setItem("lastname", lastname);
+          window.localStorage.setItem("email", email);
+          
           window.location.href = "index.html";
-          }
-
+        }
       })
       .catch(error => console.error('Request failed', error));
     }
