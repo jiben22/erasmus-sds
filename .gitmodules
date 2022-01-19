@@ -1,0 +1,3 @@
+[submodule "erasmus-sds-api"]
+	path = erasmus-sds-api
+	url = https://github.com/jiben22/erasmus-sds-api
